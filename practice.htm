@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>todoList</h1>
+
+    <input type="text" class="name">
+    <input type="date"  class ="duedate">
+    <button class="input">Add</button>
+
+    <div class="result"></div>
+
+
+    <script>
+        const todoList = [{
+            name : 'jomar',
+            dueDate : '12/2/2004'
+        }];
+        render();
+
+        function render(){
+            let nameList = '';
+            todoList.forEach((text,index)=>{
+                const {name,dueDate} = text;
+
+                nameList += `
+                <div>${name}</div>
+                <div>${dueDate}</div>
+                <button onclick = "todoList.splice(${index},1)
+                render();">Delete</button>
+                `;
+
+                document.querySelector('.result').innerHTML = nameList;
+                console.log(nameList);
+            });
+
+        }
+
+        document.querySelector('.input').addEventListener('click',()=>{
+            const text = document.querySelector('.name');
+            const input = text.value;
+            const due = document.querySelector('.duedate');
+            const inputDate = due.value;
+
+            todoList.push({
+                name : input,
+                dueDate : inputDate
+            });
+            render();
+        
+
+        });
+            
+    </script>
+    
+</body>
+</html>

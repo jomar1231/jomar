@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GCash Transaction</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>GCash Send Money</h2>
+
+  <label>Receiver Name</label>
+  <input type="text" id="name" placeholder="Enter name">
+
+  <label>Amount (₱)</label>
+  <input type="number" id="amount" placeholder="Enter amount">
+
+  <button onclick="sendMoney()">Send Money</button>
+
+  <div id="receipt" class="receipt hidden">
+    <h3>Transaction Receipt</h3>
+    <p><b>Receiver:</b> <span id="rName"></span></p>
+    <p><b>Amount:</b> ₱<span id="rAmount"></span></p>
+    <p><b>Status:</b> Successful</p>
+    <p><b>Reference No:</b> <span id="ref"></span></p>
+    <p><b>Date:</b> <span id="date"></span></p>
+  </div>
+</div>
+
+<script src="gcash.js   "></script>
+</body>
+</html>
