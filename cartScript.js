@@ -52,8 +52,8 @@ products.forEach((product) => {
       </div>
 
       <select class="quantity-selector">
-        <option class="num1">1</option>
-        <option class="num2">2</option>
+        <option>1</option>
+        <option>2</option>
         <option>3</option>
         <option>4</option>
         <option>5</option>
@@ -73,17 +73,11 @@ products.forEach((product) => {
 document.querySelector('.main').innerHTML = productHtml;
 
 const cartquantity = document.querySelector('.cart-quantity');
-const Quantity = document.querySelector('.num1');
-const Quantity1 = document.querySelector('.num2');
+
 function CartItem() {
   let cartQuantity = 1;
-  
   cart.forEach((item) => {
-    if(Quantity === "1"){
-    cartQuantity += Quantity;
-    }else if(Quantity === "2"){
-      cartQuantity + Quantity;
-    }
+    cartQuantity += item.quantity;
   });
 
   cartquantity.textContent = cartQuantity;
