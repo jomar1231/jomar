@@ -1,19 +1,24 @@
 import { cart } from "./cart.js";
-import { products } from "./cartScript.js";
+import { products } from "./products.js";
 
+let html = "";
 
 cart.forEach((item) => {
-    let matchingProductHTML;
-    const productId = item.productId;
-    products.forEach((product)=>{
-        if(product.id === productId ){
-            matchingProductHTML = product;
-        }
-    });
 
-    matchingProductHTML += 
-    
-   `
+  const productId = item.productId;
+  let matchingItem;
+
+  products.forEach((product) => {
+    if (product.id === productId) {
+      matchingItem = product;
+    }
+  });
+
+  if (!matchingItem) {
+    return;
+  }
+
+  html += `
   <div class="item-card">
 
     <div class="date">
@@ -22,17 +27,17 @@ cart.forEach((item) => {
 
     <div class="content">
 
-      <img class="product-img" src="">
+      <img class="product-img" src="${matchingItem.image}">
 
       <div class="info">
-        <p class="title">$</p>
+        <p class="title">${matchingItem.name}</p>
 
         <p class="price">
-          
+          $${(matchingItem.priceCents / 100).toFixed(2)}
         </p>
 
         <p>
-          Quantity: 1
+          Quantity: ${item.quantity}
           <span class="link">Update</span>
           <span class="link">Delete</span>
         </p>
@@ -42,17 +47,17 @@ cart.forEach((item) => {
         <p>Choose a delivery option:</p>
 
         <label>
-          <input type="radio" name="" checked>
+          <input type="radio" name="d-${productId}" checked>
           Tuesday, February 10 - FREE Shipping
         </label>
 
         <label>
-          <input type="radio" name="">
+          <input type="radio" name="d-${productId}">
           Wednesday, February 4 - $4.99
         </label>
 
         <label>
-          <input type="radio" name="">
+          <input type="radio" name="d-${productId}">
           Monday, February 2 - $9.99
         </label>
 
@@ -61,5 +66,6 @@ cart.forEach((item) => {
     </div>
   </div>
   `;
-  
 });
+
+document.querySelector('.items').innerHTML = html;
