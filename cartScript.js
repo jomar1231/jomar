@@ -81,8 +81,6 @@ function CartItem() {
   });
 
   cartquantity.textContent = cartQuantity;
-
-  console.log(cartQuantity);
 }
 
 document.querySelectorAll('.js-cart-button').forEach((button) => {
@@ -90,7 +88,6 @@ document.querySelectorAll('.js-cart-button').forEach((button) => {
     const productId = button.dataset.productId;
     addToCart(productId);
     CartItem();
-    console.log(addToCart(productId));
   });
 });
 
