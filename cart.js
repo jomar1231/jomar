@@ -43,4 +43,6 @@ export function RemoveProduct(buttonId){
 
    cart = newCart;
    saveStorage();
-}   
+}
+
+

@@ -27,6 +27,7 @@ products.forEach((product) => {
         <option>5</option>
       </select>
 
+      <div class = "add" ></div>
       <button class="cart-button js-cart-button"
         data-product-id="${product.id}">
         Add to cart
@@ -40,6 +41,18 @@ products.forEach((product) => {
 
 const cartquantity = document.querySelector('.cart-quantity');
 document.querySelector('.main').innerHTML = productHtml;
+
+document.querySelectorAll('.js-cart-button').forEach((addItem)=>{
+  addItem.addEventListener('click', ()=>{
+    let contentHTML = '';
+    contentHTML += `<i class="fa-solid fa-circle-check"> Added</i>`;
+    const added = document.querySelector('.add');
+    setTimeout(()=>{
+      const add = document.querySelector('.add').innerHTML = contentHTML;
+      removeHtml();
+    }, 700);
+  });
+});
 
 function CartItem() {
   let cartQuantity = 1;
