@@ -28,38 +28,51 @@ products.forEach((product) => {
       </select>
 
       <div class = "button-Add">
+      <div class = "cartAdd"> </div>
         <button class="cart-button js-cart-button js-show-button" data-product-id="${product.id}">
-          <div class = "add" data-product-id = ${product.id} ></div>
+          <div class = "add" data-product-id = ${product.id} >Add To Cart</div>
         </button>
       </div>
     </div>
   `;
 });
-
 const cartquantity = document.querySelector('.cart-quantity');
 document.querySelector('.main').innerHTML = productHtml;
-cartAddShow();
+/*
 
+const added = this.querySelector('.add');
+document.querySelectorAll('.cart-button').forEach((button)=>{
+  button.querySelector('.cartAdd').innerHTML = `Add To Cart`;
+  button.addEventListener('click', function (){
+    this.disabled = true;
+    added.innerHTML = `<i class="fa-solid fa-circle-check"> Added</i>`;
+    setTimeout(() => {
+      added.classList.add('hello');
+      setTimeout(()=>{
+        added.innerHTML = '';
+        this.disabled = false;
+      },300);
+    }, 700);
+  });
+});
+*/
+newAddCart();
 
-
-function cartAddShow(){
-  const CartToItem = document.querySelectorAll('.js-show-button');
-  CartToItem.forEach((addItem)=>{
-    addItem.addEventListener('click', function (){
-      const added = this.querySelector('.add');
-      this.disabled = true;
-      added.innerHTML = `<i class="fa-solid fa-circle-check"> Added</i>`;
-      added.classList.add('show');
+function newAddCart() {
+  document.querySelectorAll('.js-cart-button').forEach((bttn) => {
+    bttn.addEventListener('click', () => {
+      bttn.innerHTML = `<i class="fa-solid fa-circle-check"></i> Added`;
       setTimeout(() => {
-        added.classList.add('hello');
-        setTimeout(()=>{
-          added.innerHTML = '';
-          this.disabled = false;
-        },300);
-      }, 700);
+        bttn.classList.add('hello');
+        setTimeout(() => {
+          bttn.innerHTML = 'Add to Cart';
+          bttn.classList.remove('hello');
+        }, 1000);
+      }, 500);
     });
   });
 }
+
 
 
 
