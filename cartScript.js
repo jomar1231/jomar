@@ -27,36 +27,46 @@ products.forEach((product) => {
         <option>5</option>
       </select>
 
-      <div class = "add" ></div>
-      <button class="cart-button js-cart-button js-show-button"
-        data-product-id="${product.id}">
-        Add to cart
-      </button>
+      <div class = "button-Add">
+        <button class="cart-button js-cart-button js-show-button" data-product-id="${product.id}">
+          <div class = "add" data-product-id = ${product.id} ></div>
+        </button>
+      </div>
     </div>
   `;
 });
 
-
-
-
 const cartquantity = document.querySelector('.cart-quantity');
 document.querySelector('.main').innerHTML = productHtml;
 cartAddShow();
-function cartAddShow(){
-  document.querySelectorAll('.js-show-button').forEach((addItem)=>{
-  addItem.addEventListener('click', ()=>{
-    const AddShow = addItem.dataset.productId;
-    cartItemShow(AddShow);
-  });
-});
-}
 
-function cartItemShow(AddShow){
-  products.forEach((productShow)=>{
-    if(AddShow === productShow.id){
-      const added = document.querySelector('.add');
+
+
+function cartAddShow(){
+  const CartToItem = document.querySelectorAll('.js-show-button');
+  CartToItem.forEach((addItem)=>{
+    addItem.addEventListener('click', function (){
+      const added = this.querySelector('.add');
+      this.disabled = true;
       added.innerHTML = `<i class="fa-solid fa-circle-check"> Added</i>`;
       added.classList.add('show');
+      setTimeout(() => {
+        added.classList.add('hello');
+        setTimeout(()=>{
+          added.innerHTML = '';
+          this.disabled = false;
+        },300);
+      }, 700);
+    });
+  });
+}
+
+
+
+/*
+const added = document.querySelector('.add');
+    added.innerHTML = `<i class="fa-solid fa-circle-check"> Added</i>`;
+     added.classList.add('show');
       setTimeout(()=>{
         added.classList.add('hello');
         setTimeout(() => {
@@ -64,11 +74,9 @@ function cartItemShow(AddShow){
           added.innerHTML = '';
         }, 300);
       }, 700);
-    }
-  });
-  
+*/
+      
     
-}
 
 function CartItem() {
   let cartQuantity = 1;
