@@ -64,7 +64,6 @@ cart.forEach((item) => {
 });
 
 document.querySelector('.items').innerHTML = CartSummary;
-
 document.querySelectorAll('.js-delete-cart')
 .forEach((link)=>{
   link.addEventListener('click', ()=>{
