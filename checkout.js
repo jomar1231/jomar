@@ -64,6 +64,16 @@ cart.forEach((item) => {
 });
 
 document.querySelector('.items').innerHTML = CartSummary;
+document.querySelectorAll('.js-update-button').forEach((item)=>{
+  item.addEventListener('click', ()=>{
+    document.querySelector('.js-quantity').innerHTML= `<input type = "text" min=1>`;
+    item.classList.add('save');
+    item.innerHTML = `<button>Save</button>`;
+    item.addEventListener('click', ()=>{
+      
+    });
+  });
+});
 document.querySelectorAll('.js-delete-cart')
 .forEach((link)=>{
   link.addEventListener('click', ()=>{

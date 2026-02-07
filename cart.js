@@ -31,6 +31,7 @@ export function addToCart(productId){
         quantity : 1
         });
     }
+    saveStorage();
     
 }
 
