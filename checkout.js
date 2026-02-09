@@ -34,7 +34,7 @@ cart.forEach((item) => {
         </p>
 
         <p>
-          <div>Quantity : <span class = "js-quantity">${item.quantity}</span> </div>
+          <div>Quantity : <span class = "js-quntity-update js-quantity" ></span> </div>
           <button class = "update-cart js-update-button " data-button-id = "${matchingItem.id}">Update</button>
           <button class = "delete-cart js-delete-cart"   data-button-id ="${matchingItem.id}">Delete</button>
         </p>
@@ -65,15 +65,24 @@ cart.forEach((item) => {
 
 document.querySelector('.items').innerHTML = CartSummary;
 document.querySelectorAll('.js-update-button').forEach((item)=>{
+  // click update lalabas yung save and input  ===>
   item.addEventListener('click', ()=>{
-    document.querySelector('.js-quantity').innerHTML= `<input type = "text" min=1>`;
-    item.classList.add('save');
+    const input = document.querySelector('.js-quantity');
+    input.innerHTML= `<input type = "text" min= "1">`;
     item.innerHTML = `<button>Save</button>`;
     item.addEventListener('click', ()=>{
-      
+      input.remove();
+      item.style.display("none");
+      input.classList.add('saved');
+      item.classList.add('save');
+      document.querySelector('.save').innerHTML = `<input type = "text" min= "1">`;
+      const value = input.value;
+      document.querySelector('.js-quatity-update').innerHTML = value;
     });
   });
 });
+
+
 document.querySelectorAll('.js-delete-cart')
 .forEach((link)=>{
   link.addEventListener('click', ()=>{
