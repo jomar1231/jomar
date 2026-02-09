@@ -6,7 +6,7 @@ if(!cart){
         quantity : 1
     },{
         productId : 'f7b3f72b-e813-46e6-a72c-cd89540c160f',
-        quantity : 1
+        quantity : 2
     }];
 }
 

@@ -34,7 +34,7 @@ cart.forEach((item) => {
         </p>
 
         <p>
-          <div>Quantity : <span class = "js-quntity-update js-quantity" ></span> </div>
+          <div>Quantity : <span class="js-quantity-update">${item.quantity}</span></div>
           <button class = "update-cart js-update-button " data-button-id = "${matchingItem.id}">Update</button>
           <button class = "delete-cart js-delete-cart"   data-button-id ="${matchingItem.id}">Delete</button>
         </p>
@@ -64,22 +64,47 @@ cart.forEach((item) => {
 });
 
 document.querySelector('.items').innerHTML = CartSummary;
-document.querySelectorAll('.js-update-button').forEach((item)=>{
-  // click update lalabas yung save and input  ===>
-  item.addEventListener('click', ()=>{
-    const input = document.querySelector('.js-quantity');
-    input.innerHTML= `<input type = "text" min= "1">`;
-    item.innerHTML = `<button>Save</button>`;
-    item.addEventListener('click', ()=>{
-      input.remove();
-      item.style.display("none");
-      input.classList.add('saved');
-      item.classList.add('save');
-      document.querySelector('.save').innerHTML = `<input type = "text" min= "1">`;
-      const value = input.value;
-      document.querySelector('.js-quatity-update').innerHTML = value;
-    });
+
+document.querySelectorAll('.js-update-button').forEach((btn) => {
+
+  btn.addEventListener('click', () => {
+
+    const card = btn.closest('.item-card');
+    const qtyText = card.querySelector('.js-quantity-update');
+
+    // KUNG UPDATE MODE PA
+    if (btn.innerText === "Update") {
+      const input = document.createElement('input');
+      input.type = "number";
+      input.min = 1;
+      input.value = qtyText.textContent;
+
+      // 2. palit text → input
+      qtyText.replaceWith(input);
+
+      // 3. button maging SAVE
+      btn.innerText = "Save";
+
+    }
+
+    // KUNG SAVE MODE NA
+    else {
+      const input = card.querySelector('input');
+      // 4. kunin value
+      const newQty = input.value;
+      // 5. balik span
+      const span = document.createElement('span');
+      span.className = "js-quantity-update";
+      span.innerText = newQty;
+      input.replaceWith(span);
+
+      // 6. balik UPDATE
+      btn.innerText = "Update";
+
+    }
+
   });
+
 });
 
 
@@ -92,4 +117,3 @@ document.querySelectorAll('.js-delete-cart')
     item.remove();
   });
 });
-
