@@ -16,7 +16,7 @@ products.forEach((product) => {
       </div>
 
       <div class="js-product-cost">
-        $${(product.priceCents / 100).toFixed(2)}
+        $${(product.priceCents)}
       </div>
 
       <select class="quantity-selector">
@@ -38,6 +38,9 @@ products.forEach((product) => {
 });
 const cartquantity = document.querySelector('.cart-quantity');
 document.querySelector('.main').innerHTML = productHtml;
+
+console.log(products.find('cappucino'));
+
 /*
 
 const added = this.querySelector('.add');
@@ -67,7 +70,7 @@ function newAddCart() {
         setTimeout(() => {
           bttn.innerHTML = 'Add to Cart';
           bttn.classList.remove('hello');
-        }, 1000);
+        }, 800);
       }, 500);
     });
   });
@@ -91,10 +94,11 @@ const added = document.querySelector('.add');
       
     
 
-function CartItem() {
+export function CartItem() {
   let cartQuantity = 1;
   cart.forEach((item) => {
     cartQuantity += item.quantity;
+    // cartQuantity = cartQuantity + item.quantity
   });
 
   cartquantity.textContent = cartQuantity;
@@ -103,6 +107,7 @@ function CartItem() {
 document.querySelectorAll('.js-cart-button').forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
+    button.classList.add('name');
     addToCart(productId);
     CartItem();
   });

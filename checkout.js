@@ -1,5 +1,6 @@
 import { cart,RemoveProduct} from "./cart.js";
 import { products } from "./products.js";
+import { moneyPrice } from "./utils.js";
 
 let CartSummary = '';
 
@@ -30,7 +31,7 @@ cart.forEach((item) => {
         <p class="title">${matchingItem.name}</p>
 
         <p class="price">
-          $${(matchingItem.priceCents / 100).toFixed(2)}
+          $${moneyPrice(matchingItem.priceCents)}
         </p>
 
         <p>
@@ -47,12 +48,10 @@ cart.forEach((item) => {
           <input type="radio" name="d-${productId}" checked>
           Tuesday, February 10 - FREE Shipping
         </label>
-
         <label>
           <input type="radio" name="d-${productId}">
           Wednesday, February 4 - $4.99
         </label>
-
         <label>
           <input type="radio" name="d-${productId}">
           Monday, February 2 - $9.99
@@ -72,39 +71,34 @@ document.querySelectorAll('.js-update-button').forEach((btn) => {
     const card = btn.closest('.item-card');
     const qtyText = card.querySelector('.js-quantity-update');
 
-    // KUNG UPDATE MODE PA
-    if (btn.innerText === "Update") {
+    // KUNG PININDOT UPDATE
+    if (btn.innerText === "Update") { 
       const input = document.createElement('input');
       input.type = "number";
       input.min = 1;
       input.value = qtyText.textContent;
 
-      // 2. palit text → input
+      //  palit text to input
       qtyText.replaceWith(input);
 
-      // 3. button maging SAVE
+      //  button maging SAVE
       btn.innerText = "Save";
 
     }
-
-    // KUNG SAVE MODE NA
+    // Nasa Save Button 
     else {
       const input = card.querySelector('input');
-      // 4. kunin value
+      //  kunin value
       const newQty = input.value;
-      // 5. balik span
+      //  balik span
       const span = document.createElement('span');
       span.className = "js-quantity-update";
       span.innerText = newQty;
       input.replaceWith(span);
-
-      // 6. balik UPDATE
+      //  balik UPDATE
       btn.innerText = "Update";
-
     }
-
   });
-
 });
 
 

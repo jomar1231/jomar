@@ -6,7 +6,7 @@ if(!cart){
         quantity : 1
     },{
         productId : 'f7b3f72b-e813-46e6-a72c-cd89540c160f',
-        quantity : 2
+        quantity : 1
     }];
 }
 
@@ -20,7 +20,6 @@ export function addToCart(productId){
             matchingItem = CartItem;
         }
     });
-
     if(matchingItem){
         matchingItem.quantity += 1;
         // matchingItem.quantity = matchingItem.quantity + 1
@@ -42,7 +41,6 @@ export function RemoveProduct(buttonId){
             newCart.push(carts);
         }
     });
-
    cart = newCart;
    saveStorage();
 }

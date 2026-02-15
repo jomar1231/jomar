@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
 .bg-video {
@@ -17,17 +17,14 @@
 }
 
 .shop-header{
-    position: sticky;
-    top: 0;
     z-index: 100;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     padding: 12px 40px;
-    background: rgba(35, 21, 14, 0.65);
+    background: #23150ea6;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(206, 94, 94, 0.3);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -64,6 +61,11 @@
     outline: none;
     border-radius: 25px 0 0 25px;
     font-size: 14px;
+    
+}
+
+.js-search-bar, .button-icon{
+    box-shadow: 5px 5px 5px wheat;
 }
 
 .button-icon{
@@ -131,7 +133,20 @@
         margin-top: 5px;
         margin-bottom: 10px;
     }
+
+    .left-section{
+        display: none;
+    }
+   #hambuger{
+    color: white;
+    font-size: 30px;
+    position: relative;
+    top: 15px;
+   }
+
+   
 }
+
 .product-container{
     background: rgba(255,255,255,0.9);
     border-radius: 16px;
@@ -244,3 +259,20 @@ option{
     transform: translateY(-8px);
 }
 
+a{
+    text-decoration: none;
+}
+.css-login-sys{
+    color: #cfa670;
+}
+.login-sys :hover {
+    color: white;
+}
+.login-sys :active{
+    color: blue;
+}
+.login-sys{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
