@@ -1,9 +1,22 @@
-const todoList = 
-    [{
+
+
+let todoList = JSON.parse(localStorage.getItem('todolist'));
+
+if(!todoList){
+    todoList = [
+    {
         name:'jomar', dueDate : '12/23/2004'
-    },{ 
+    },
+    { 
         name: 'vergara', dueDate: '11/12/2004'
-    }];
+    }
+];
+}
+function save(){
+    localStorage.setItem('todolist', JSON.stringify(todoList));
+}
+
+
 
 render();
 
@@ -13,7 +26,7 @@ function render (){
     let todoHtml = '';
     todoList.forEach((todObject,index)=>{
         const {name, dueDate} = todObject;
-        const nameList = ` 
+        todoHtml += ` 
         <div>${name} </div>
         <div>${dueDate}</div>
         <button onclick = "
@@ -21,9 +34,9 @@ function render (){
         render();
         ">Delete</button>
          `;
-        todoHtml += nameList;
         document.querySelector('.IsName').innerHTML = todoHtml;
     });
+    save();
     
 }
 function input(){
@@ -37,6 +50,7 @@ function input(){
     });
     text.value = '';
     render();
+    save();
 }
 
 const key = "EgoyMDI2MDEyOC4wIKXMDSoKLDEwMDc5MjA2N0gBUAM%3D";

@@ -29,7 +29,7 @@
     <button onclick="PlayerGame('Paper');   ">Paper</button>
     <button onclick="PlayerGame('Scissor'); ">Scissor</button>
     <p class="name-cons"></p>
-    <button onclick="resetScore();">Reset Score</button>
+    <button class="resetButton">Reset Score</button>
     <button class="qwe"> subscribe </button>
     
 
@@ -53,14 +53,15 @@
                 ties:0
             }
         }
-        function resetScore() {
+        const resetbtn = document.querySelector('.resetButton');
+        resetbtn.addEventListener('click',()=>{
             score.wins = 0;
             score.losses = 0;
             score.ties = 0;
             localStorage.removeItem('score');
             alert('Score has been reset. wins: 0, losses: 0, ties: 0'
             );
-        }
+        });
 
         
 

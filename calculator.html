@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .button{
+            display: grid;
+            grid-template-columns: 10px;
+            color: brown;
+        }
+    </style>
 </head>
 <body>
     <div ></div>
@@ -50,8 +57,7 @@
             const date = new Date();
 
 
-            const fullDate = date.getDate()+ ":" + date.getHours()+ ":" + date.getMinutes() + ":" + date.getSeconds() ;
-
+            const fullDate = date.getDate()+ ":" + date.getHours()+ ":" + date.getMinutes() + ":" + date.getSeconds()+ ":"+ date.getFullYear();
             document.getElementById('clocks').innerHTML = fullDate;
         }
        
