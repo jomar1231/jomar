@@ -1,6 +1,6 @@
 import { cart, addToCart } from './cart.js';
 import { products } from './products.js';
-
+import { moneyPrice } from './utils.js';
 let productHtml = '';
 
 products.forEach((product) => {
@@ -16,7 +16,7 @@ products.forEach((product) => {
       </div>
 
       <div class="js-product-cost">
-        $${(product.priceCents)}
+        $${moneyPrice(product.priceCents)}
       </div>
 
       <select class="quantity-selector">
@@ -30,16 +30,14 @@ products.forEach((product) => {
       <div class = "button-Add">
       <div class = "cartAdd"> </div>
         <button class="cart-button js-cart-button js-show-button" data-product-id="${product.id}">
-          <div class = "add" data-product-id = ${product.id} >Add To Cart</div>
+            <div class = "add" data-product-id = ${product.id} >Add To Cart</div>
         </button>
       </div>
     </div>
   `;
 });
-const cartquantity = document.querySelector('.cart-quantity');
-document.querySelector('.main').innerHTML = productHtml;
 
-console.log(products.find('cappucino'));
+document.querySelector('.main').innerHTML = productHtml;
 
 /*
 
@@ -77,8 +75,6 @@ function newAddCart() {
 }
 
 
-
-
 /*
 const added = document.querySelector('.add');
     added.innerHTML = `<i class="fa-solid fa-circle-check"> Added</i>`;
@@ -100,7 +96,7 @@ export function CartItem() {
     cartQuantity += item.quantity;
     // cartQuantity = cartQuantity + item.quantity
   });
-
+  
   cartquantity.textContent = cartQuantity;
 }
 

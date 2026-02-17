@@ -2,6 +2,8 @@ import { cart,RemoveProduct} from "./cart.js";
 import { products } from "./products.js";
 import { moneyPrice } from "./utils.js";
 
+
+
 let CartSummary = '';
 
 cart.forEach((item) => {

@@ -1,0 +1,32 @@
+{
+    "products":[
+        {
+        "id":"e8be38a0-f329-46ae-bf3f-c4ee3bf13d20"
+        ,"image":"img/IMG_3367-iced-tea.jpg"
+        ,"name":"Ice Tea",
+        "rating":{
+            "stars":"img/pngtree-flat-design-vector-illustration-of-an-icon-with-evaluation-rating-and-stars-vector-png-image_41549416.jpg",
+            "count":78
+        },
+            "priceCents":1910},
+        {
+            "id":"f7b3f72b-e813-46e6-a72c-cd89540c160f",
+            "image":"img/coppucino.jpg",
+            "name":"Cappuccino",
+            "rating":{
+                "stars":"img/pngtree-flat-design-vector-illustration-of-an-icon-with-evaluation-rating-and-stars-vector-png-image_41549416.jpg",
+                "count":78
+            },
+            "priceCents":1910
+        },{
+            "id":"c5a2639a-5256-4708-87e4-25cf6d728773",
+            "image":"img/milktea.jpg",
+            "name":"Milktea",
+            "rating":{
+                "stars":"img/pngtree-flat-design-vector-illustration-of-an-icon-with-evaluation-rating-and-stars-vector-png-image_41549416.jpg",
+                "count":87
+            },
+            "priceCents":1090
+        }
+    ]
+}
