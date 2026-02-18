@@ -28,5 +28,15 @@ export const products = [
       count: 87
     },
     priceCents: 1090
+  },
+  {
+    id: 'c5a2639a-5256-4708-87e4-25cf6d728773',
+    image: 'img/milktea.jpg',
+    name: 'Milktea',
+    rating: {
+      stars: 'img/pngtree-flat-design-vector-illustration-of-an-icon-with-evaluation-rating-and-stars-vector-png-image_41549416.jpg',
+      count: 87
+    },
+    priceCents: 1090
   }
 ];

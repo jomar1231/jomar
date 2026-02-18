@@ -1,6 +1,6 @@
 import { cart, addToCart } from './cart.js';
-import { products } from './products.js';
-import { moneyPrice } from './utils.js';
+import { products } from '../products.js';
+import { moneyPrice } from '../utils.js';
 let productHtml = '';
 
 products.forEach((product) => {
