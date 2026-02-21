@@ -1,43 +1,59 @@
 import { cart, addToCart } from './cart.js';
-import { products } from './products.js';
 import { moneyPrice } from './utils.js';
-let productHtml = '';
 
-products.forEach((product) => {
-  productHtml += `
-    <div class="product-container">
-      <img class="image-product" src="${product.image}" alt="${product.name}">
+async function loadProducts() {
 
-      <div class="product-name">${product.name}</div>
+  try {
+      const response = await fetch('./database/db.json');
+      const data = await response.json();
+      const products = data.products;
+      renderProducts(products);
+    } catch (error) {
+        console.log("Error:", error);
+    }
+  }
 
-      <div class="rating">
-        <img class="product-rating" src="${product.rating.stars}">
-        <span>${product.rating.count}</span>
+  loadProducts();
+  function renderProducts(products){
+  let productHtml = '';
+  products.forEach((product) => {
+    productHtml += `
+      <div class="product-container">
+        <img class="image-product" src="${product.image}" alt="${product.name}">
+
+        <div class="product-name">${product.name}</div>
+
+        <div class="rating">
+          <img class="product-rating" src="${product.rating.stars}">
+          <span>${product.rating.count}</span>
+        </div>
+
+        <div class="js-product-cost">
+          $${moneyPrice(product.priceCents)}
+        </div>
+
+        <select class="quantity-selector">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+
+        <div class = "button-Add">
+        <div class = "cartAdd"> </div>
+          <button class="cart-button js-cart-button js-show-button" data-product-id="${product.id}">
+              <div class = "add" data-product-id = ${product.id} >Add To Cart</div>
+          </button>
+        </div>
       </div>
-
-      <div class="js-product-cost">
-        $${moneyPrice(product.priceCents)}
-      </div>
-
-      <select class="quantity-selector">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-
-      <div class = "button-Add">
-      <div class = "cartAdd"> </div>
-        <button class="cart-button js-cart-button js-show-button" data-product-id="${product.id}">
-            <div class = "add" data-product-id = ${product.id} >Add To Cart</div>
-        </button>
-      </div>
-    </div>
   `;
 });
 
 document.querySelector('.main').innerHTML = productHtml;
+
+       } 
+
 
 /*
 
@@ -109,3 +125,13 @@ document.querySelectorAll('.js-cart-button').forEach((button) => {
   });
 });
 
+function search(){
+  const searchProduct = document.querySelector('.js-search-bar');
+  const buttonSearch = document.querySelector('js-button-icon')
+  buttonSearch.addEventListener('enter', ()=>{
+    const search = searchProduct.value;
+    products.find();
+  });
+
+  products.filter(product);
+}
