@@ -1,18 +1,43 @@
 import { cart, addToCart } from './cart.js';
 import { moneyPrice } from './utils.js';
+/*
+function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    .replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+}
+added();
+async function added() {
+  
+
+  const response = await fetch('./database/db.json', {
+    method : 'POST',
+    headers : {
+      'content-Type' : 'application/json'
+    },
+    body : JSON.stringify(addedProduct)
+  });
+  const data = await response.json();
+  console.log(data);
+}
+
+*/
+
 
 async function loadProducts() {
-
   try {
       const response = await fetch('./database/db.json');
       const data = await response.json();
-      const products = data.products;
+      const products = data.products.id;
+      console.log(products);
       renderProducts(products);
     } catch (error) {
         console.log("Error:", error);
     }
   }
-
   loadProducts();
   function renderProducts(products){
   let productHtml = '';
@@ -47,12 +72,12 @@ async function loadProducts() {
           </button>
         </div>
       </div>
-  `;
-});
+    `;
+  });
 
-document.querySelector('.main').innerHTML = productHtml;
+  document.querySelector('.main').innerHTML = productHtml;
 
-       } 
+} 
 
 
 /*
