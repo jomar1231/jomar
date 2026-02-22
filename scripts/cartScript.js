@@ -32,7 +32,6 @@ async function loadProducts() {
       const response = await fetch('./database/db.json');
       const data = await response.json();
       const products = data.products.id;
-      console.log(products);
       renderProducts(products);
     } catch (error) {
         console.log("Error:", error);
