@@ -1,0 +1,46 @@
+/* styling specific to returns & orders page */
+
+#my-orders, #order-tracking, #return-request, #reviews, #comments {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.9);
+}
+
+#my-orders h2,
+#order-tracking h2,
+#return-request h2,
+#reviews h2,
+#comments h2 {
+    margin-top: 0;
+}
+
+#orders-list .order-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#orders-list .order-item:last-child {
+    border-bottom: none;
+}
+
+#orders-list .order-item span.status {
+    font-weight: bold;
+}
+
+/* reuse review star rules from MarketStyle if needed */
+.review-star {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.review-star.selected {
+    color: #f5b301;
+}
+
+body{
+    background-color: rgba(149, 88, 44, 0.799);
+}

@@ -1,0 +1,13 @@
+{
+    "cart":[{
+        "productId":"e8be38a0-f329-46ae-bf3f-c4ee3bf13d20",
+        "quantity" : "1"
+    },{
+        "productId": "f7b3f72b-e813-46e6-a72c-cd89540c160f",
+        "quantity":"1"
+    },{
+        "productId": "c5a2639a-5256-4708-87e4-25cf6d728773",
+        "quantity":"1"
+    }
+    ]
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns & Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles/MarketStyle.css">
+    <link rel="stylesheet" href="styles/returns$orderss.css">
+</head>
+<body>
+    <!-- reuse header from shopMarket.html -->
+    <header class="shop-header">
+        <section class="right-section">
+            <a href="shopMarket.html" class="header-lnk">
+                <img class="shop-logo" src="img/canva-brown-modern-circle-coffee-shop-logo-TCp6UxDtpus.jpg" alt="logo-shop">
+            </a>
+        </section>
+        <section class="mid-section">
+            <input class="js-search-bar" type="text" placeholder="Search Favorite coffee">
+            <button class="button-icon js-button-icon">
+                <img class="button-container" src="img/free-search-icon.png" alt="search">
+            </button>
+        </section>
+        <section class="left-section">
+            <a href="returns$orders.html" class="returns-orders-container">
+                <span>returns</span>
+                <span>& Orders</span>
+            </a>
+            <a href="Cart-shop.html" class="text">
+                <img class="cart-container" src="img/images (2).png" alt="cart">
+                <div class="cart-text">Cart</div>
+            </a>
+            <div class="cart-quantity js-cart-quantity">0</div>
+            <div class="login-sys">
+                <a href="#" class="css-login-sys">
+                    Sign-Up
+                </a>
+                <div style="color: white;">|</div>
+                <a href="loginSys.html" class="css-login-sys">
+                    Log in
+                </a>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section id="my-orders" class="order">
+            <h2>My Orders</h2>
+            <div id="orders-list"></div>
+        </section>
+        <section id="order-tracking">
+            <h2>Track Order</h2>
+            <form id="track-form">
+                <input class="text-input"type="text" name="orderId" placeholder="Enter Order ID" required>
+                <button type="submit">Check Status</button>
+            </form>
+            <div id="track-status"></div>
+        </section>
+
+        <section id="return-request">
+            <h2>Return Request</h2>
+            <form id="return-form">
+                <input type="text" name="orderId" placeholder="Order ID" required><br>
+                <label for="reason">Reason for return:</label><br>
+                <select name="reason" id="reason">
+                    <option value="">--Select--</option>
+                    <option value="damaged">Damaged item</option>
+                    <option value="wrong">Wrong product</option>
+                    <option value="other">Other</option>
+                </select><br>
+                <label for="proof">Upload proof (optional):</label><br>
+                <input type="file" name="proof" id="proof"><br>
+                <button type="submit">Submit Return</button>
+            </form>
+            <div id="return-response"></div>
+        </section>
+
+        <section id="reviews">
+            <h2>Leave a Review</h2>
+            <form id="review-form">
+                <div class="stars">
+                    <i class="fa fa-star review-star" data-value="1"></i>
+                    <i class="fa fa-star review-star" data-value="2"></i>
+                    <i class="fa fa-star review-star" data-value="3"></i>
+                    <i class="fa fa-star review-star" data-value="4"></i>
+                    <i class="fa fa-star review-star" data-value="5"></i>
+                </div>
+                <textarea name="reviewText" placeholder="Write your review" required></textarea><br>
+                <button type="submit">Submit Review</button>
+            </form>
+            <div id="average-rating"></div>
+            <div id="reviews-list"></div>
+        </section>
+
+        <section id="comments">
+            <h2>Comments</h2>
+            <form id="comment-form">
+                <textarea name="commentText" placeholder="Write a comment" required></textarea><br>
+                <button type="submit">Post Comment</button>
+            </form>
+            <div id="comments-list"></div>
+        </section>
+    </main>
+
+    <script type="module" src="scripts/returnsOrders.js"></script>
+</body>
+</html>
