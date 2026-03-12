@@ -112,3 +112,64 @@ document.querySelectorAll('.js-delete-cart')
   });
 });
 
+// Handle Place Your Order Button
+document.querySelector('.place').addEventListener('click', () => {
+  // Get orders from localStorage
+  let orders = JSON.parse(localStorage.getItem('coffeeOrders')) || [];
+  
+  // Create order items from cart
+  const orderItems = [];
+  let total = 0;
+
+  cart.forEach((item) => {
+    const productId = item.productId;
+    let matchingProduct;
+
+    products.forEach((product) => {
+      if (product.id === productId) {
+        matchingProduct = product;
+      }
+    });
+
+    if (!matchingProduct) return;
+
+    const price = matchingProduct.priceCents / 100;
+    const itemTotal = price * item.quantity;
+    total += itemTotal;
+
+    orderItems.push({
+      name: matchingProduct.name,
+      quantity: item.quantity,
+      price: price,
+      image: matchingProduct.image
+    });
+  });
+
+  // Create new order
+  const newOrder = {
+    id: 'ORD-' + String(orders.length + 1).padStart(3, '0'),
+    date: new Date().toISOString().split('T')[0],
+    status: 'pending',
+    items: orderItems,
+    total: Math.round(total * 100) / 100
+  };
+
+  // Add order to orders array
+  orders.push(newOrder);
+
+  // Save to localStorage
+  localStorage.setItem('coffeeOrders', JSON.stringify(orders));
+
+  // Clear the cart
+  localStorage.removeItem('cart');
+
+  // Clear cart display
+  document.querySelector('.items').innerHTML = '';
+
+  // Show success message
+  alert('Order placed successfully! Order ID: ' + newOrder.id);
+
+  // Redirect to returns-orders page
+  window.location.href = 'returns$orders.html';
+});
+

@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Returns & Orders</title>
+    <title>Returns & Orders - Coffee Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles/MarketStyle.css">
-    <link rel="stylesheet" href="styles/returns$orderss.css">
+    <link rel="stylesheet" href="styles/returns-orders.css">
 </head>
 <body>
-    <!-- reuse header from shopMarket.html -->
+    <video autoplay muted loop class="bg-video">
+        <source src="16760711-uhd_2160_3840_30fps.mp4" type="video/mp4">
+    </video>
+
     <header class="shop-header">
         <section class="right-section">
             <a href="shopMarket.html" class="header-lnk">
                 <img class="shop-logo" src="img/canva-brown-modern-circle-coffee-shop-logo-TCp6UxDtpus.jpg" alt="logo-shop">
             </a>
         </section>
+        
         <section class="mid-section">
-            <input class="js-search-bar" type="text" placeholder="Search Favorite coffee">
+            <input class="js-search-bar" type="text" placeholder="Search your orders">
             <button class="button-icon js-button-icon">
                 <img class="button-container" src="img/free-search-icon.png" alt="search">
             </button>
         </section>
+        
         <section class="left-section">
-            <a href="returns$orders.html" class="returns-orders-container">
+            <a href="returns$orders.html" class="returns-orders-container active">
                 <span>returns</span>
                 <span>& Orders</span>
             </a>
@@ -33,76 +37,141 @@
             </a>
             <div class="cart-quantity js-cart-quantity">0</div>
             <div class="login-sys">
-                <a href="#" class="css-login-sys">
-                    Sign-Up
-                </a>
+                <a href="coffee-register.html" class="css-login-sys">Sign-Up</a>
                 <div style="color: white;">|</div>
-                <a href="loginSys.html" class="css-login-sys">
-                    Log in
-                </a>
+                <a href="coffee-login.html" class="css-login-sys">Log in</a>
             </div>
         </section>
+        <i class="fa-solid fa-bars" id="hambuger"></i>
     </header>
 
-    <main>
-        <section id="my-orders" class="order">
-            <h2>My Orders</h2>
-            <div id="orders-list"></div>
-        </section>
-        <section id="order-tracking">
-            <h2>Track Order</h2>
-            <form id="track-form">
-                <input class="text-input"type="text" name="orderId" placeholder="Enter Order ID" required>
-                <button type="submit">Check Status</button>
-            </form>
-            <div id="track-status"></div>
-        </section>
+    <div class="main-content">
+        <div class="container">
+            <h1 class="page-title">
+                <i class="fas fa-box"></i>
+                Your Orders & Returns
+            </h1>
 
-        <section id="return-request">
-            <h2>Return Request</h2>
-            <form id="return-form">
-                <input type="text" name="orderId" placeholder="Order ID" required><br>
-                <label for="reason">Reason for return:</label><br>
-                <select name="reason" id="reason">
-                    <option value="">--Select--</option>
-                    <option value="damaged">Damaged item</option>
-                    <option value="wrong">Wrong product</option>
-                    <option value="other">Other</option>
-                </select><br>
-                <label for="proof">Upload proof (optional):</label><br>
-                <input type="file" name="proof" id="proof"><br>
-                <button type="submit">Submit Return</button>
-            </form>
-            <div id="return-response"></div>
-        </section>
+            <!-- Tabs Navigation -->
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="switchTab('orders')">
+                    <i class="fas fa-shopping-bag"></i> Orders
+                </button>
+                <button class="tab-btn" onclick="switchTab('returns')">
+                    <i class="fas fa-undo"></i> Returns
+                </button>
+                <button class="tab-btn" onclick="switchTab('refunds')">
+                    <i class="fas fa-money-bill-wave"></i> Refunds
+                </button>
+            </div>
 
-        <section id="reviews">
-            <h2>Leave a Review</h2>
-            <form id="review-form">
-                <div class="stars">
-                    <i class="fa fa-star review-star" data-value="1"></i>
-                    <i class="fa fa-star review-star" data-value="2"></i>
-                    <i class="fa fa-star review-star" data-value="3"></i>
-                    <i class="fa fa-star review-star" data-value="4"></i>
-                    <i class="fa fa-star review-star" data-value="5"></i>
+            <!-- Orders Tab -->
+            <div id="orders-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2>Order History</h2>
+                    <div class="filter-container">
+                        <select id="orderFilter" onchange="filterOrders()">
+                            <option value="all">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
                 </div>
-                <textarea name="reviewText" placeholder="Write your review" required></textarea><br>
-                <button type="submit">Submit Review</button>
-            </form>
-            <div id="average-rating"></div>
-            <div id="reviews-list"></div>
-        </section>
 
-        <section id="comments">
-            <h2>Comments</h2>
-            <form id="comment-form">
-                <textarea name="commentText" placeholder="Write a comment" required></textarea><br>
-                <button type="submit">Post Comment</button>
-            </form>
-            <div id="comments-list"></div>
-        </section>
-    </main>
+                <div id="ordersContainer" class="orders-container">
+                    <!-- Orders will be populated by JavaScript -->
+                </div>
+            </div>
 
-    <script type="module" src="scripts/returnsOrders.js"></script>
+            <!-- Returns Tab -->
+            <div id="returns-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Return Requests</h2>
+                    <button class="btn-primary" onclick="openReturnModal()">
+                        <i class="fas fa-plus"></i> New Return Request
+                    </button>
+                </div>
+
+                <div id="returnsContainer" class="returns-container">
+                    <!-- Returns will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Refunds Tab -->
+            <div id="refunds-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Refund History</h2>
+                </div>
+
+                <div id="refundsContainer" class="refunds-container">
+                    <!-- Refunds will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Return Request Modal -->
+    <div id="returnModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeReturnModal()">&times;</span>
+            <h2><i class="fas fa-undo"></i> Create Return Request</h2>
+            
+            <form id="returnForm" onsubmit="submitReturn(event)">
+                <div class="form-group">
+                    <label for="returnOrderId">Order ID</label>
+                    <select id="returnOrderId" required>
+                        <option value="">Select an order</option>
+                        <!-- Will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="returnReason">Reason for Return</label>
+                    <select id="returnReason" required>
+                        <option value="">Select reason</option>
+                        <option value="defective">Defective Product</option>
+                        <option value="wrong-item">Wrong Item Received</option>
+                        <option value="not-as-described">Not as Described</option>
+                        <option value="quality">Quality Issues</option>
+                        <option value="expired">Expired Product</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="returnDescription">Description</label>
+                    <textarea id="returnDescription" rows="4" placeholder="Please provide details about your return..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="refundMethod">Refund Method</label>
+                    <select id="refundMethod" required>
+                        <option value="original">Original Payment Method</option>
+                        <option value="store-credit">Store Credit</option>
+                        <option value="exchange">Exchange for Another Product</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeReturnModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeOrderDetailsModal()">&times;</span>
+            <div id="orderDetailsContent">
+                <!-- Order details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/returns-orders.js"></script>
 </body>
 </html>
