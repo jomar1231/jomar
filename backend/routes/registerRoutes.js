@@ -9,3 +9,7 @@ const authController = require("../controller/authController");
 router.post("/register", authController.register);
 
 module.exports = router;
+
+
+
+

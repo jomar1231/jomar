@@ -1,33 +1,38 @@
-const registerBtn = document.getElementById("registerBtn");
+async function register() {
+  const firstname = document.getElementById('firstName').value;
+  const lastname = document.getElementById('lastName').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-registerBtn.addEventListener("click", async () => {
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+  try {
+    const response = await fetch("http://localhost:3006/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ 
+        firstname,
+        lastname,
+        email,
+        password 
 
-    try {
-        const response = await fetch("http://localhost:3000/api/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password : password
-            })
-        });
-        const data = await response.json();
-        console.log(data);
-        alert("Registration successful!");
-    } catch(error) {
-        console.error("Error:", error);
+      })  // ✅ body added
+    });                                                                // ✅ fetch closes here
+
+    const data = await response.json();   // ✅ moved OUTSIDE fetch, INSIDE try
+
+    if (response.ok) {
+      alert("Registered successfully!");
+      window.location.href = '/coffee-login.html';
+    } else {
+      alert(data.message || "Registration failed");
     }
 
-});
-        
+  } catch (err) {                        // ✅ catch added
+    alert("Network error. Is your server running?");
+    console.error(err);
+  }
+}
 
 // Password strength checker
 const passwordInput = document.getElementById('password');
