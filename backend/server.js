@@ -12,8 +12,10 @@ app.use(express.json());
 // ============================================
 // API ROUTES (MUST come before static files)
 // ============================================
-app.use("/api", require("./routes/loginRoutes"));
 app.use("/api", require("./routes/registerRoutes"));
+app.use("/api", require("./routes/loginRoutes"));
+app.use("/api", require("./routes/userRoutes"));
+
 
 // ============================================
 // HTML PAGE ROUTES
@@ -35,7 +37,6 @@ app.get('/dashboard',(req,res) =>{
 // ============================================
 // Serve your entire frontend folder
 app.use(express.static(path.join(__dirname, '../frontend')));
-
 // ============================================
 // 404 HANDLER (MUST be last)
 // ============================================

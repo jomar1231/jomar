@@ -9,10 +9,15 @@ exports.createUser = (user,callback) =>{
 };
 
 exports.findUserByEmail = (email,callback)=>{
-    db.query("SELECT * FROM register WHERE Email = ?",
+    db.query("SELECT id, First_Name as firstname, Last_Name as lastname, Email as email, Password as password FROM register WHERE Email = ?",
         [email],callback
     );
 };
 
+exports.getAllUsers = (callback)=>{
+    db.query("SELECT id, First_Name as firstname, Last_Name as lastname, Email as email, Password as password FROM register",
+        callback
+    );
+};
 
 
