@@ -26,7 +26,6 @@ async function login() {
 
         if(response.ok){
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
             alert("LOGIN SUCCESSFULLY");
             window.location.href = "/shopMarket.html";
         }else{

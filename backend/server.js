@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 const path = require('path');
+const PORT = process.env.PORT || 3006;
 app.use(cors());
 app.use(express.json());
 
@@ -15,8 +16,7 @@ app.use(express.json());
 app.use("/api", require("./routes/registerRoutes"));
 app.use("/api", require("./routes/loginRoutes"));
 app.use("/api", require("./routes/userRoutes"));
-
-
+app.use("/auth", require("./routes/registerRoutes"));
 // ============================================
 // HTML PAGE ROUTES
 // ============================================
@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
-const PORT = process.env.PORT || 3006;
+
 // ============================================
 // START SERVER
 // ============================================

@@ -3,7 +3,6 @@ async function register() {
   const lastname = document.getElementById('lastName').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-
   try {
     const response = await fetch("http://localhost:3006/api/register", {
       method: "POST",
@@ -16,10 +15,10 @@ async function register() {
         email,
         password 
 
-      })  // ✅ body added
-    });                                                                // ✅ fetch closes here
+      })
+    });    
 
-    const data = await response.json();   // ✅ moved OUTSIDE fetch, INSIDE try
+    const data = await response.json();   
 
     if (response.ok) {
       alert("Registered successfully!");
