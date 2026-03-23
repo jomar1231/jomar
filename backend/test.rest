@@ -2,4 +2,9 @@
 
 
 
-http://localhost:3006/api/register
+http://localhost:3006/api/users
+
+#############
+
+http://localhost:3006/api/profile
+

@@ -27,7 +27,7 @@ async function register() {
       alert(data.message || "Registration failed");
     }
 
-  } catch (err) {                        // ✅ catch added
+  } catch (err) {
     alert("Network error. Is your server running?");
     console.error(err);
   }

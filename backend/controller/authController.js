@@ -5,15 +5,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModels");
 
-exports.getAllUsers = async (req,res) =>{
-  User.getAllUsers((err,result)=>{
-    if(err){
-      return res.status(500).json({message: "Database error: " + err});
-    }
-    res.json({database : "Users retrieved", user : result});
-  });
-};
-
 // Register
 exports.register = async (req,res)=>{
   const { firstname, lastname, email, password } = req.body;
@@ -25,7 +16,6 @@ exports.register = async (req,res)=>{
   if(password.length < 6) {
     return res.status(400).json({message: "Password must be at least 6 characters"});
   }
-  
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     User.createUser({firstname, lastname, email, password: hashedPassword}, (err,result)=>{
@@ -54,7 +44,7 @@ exports.login = (req,res)=>{
 
   User.findUserByEmail(email, async (err,result)=>{
     if(err) return res.status(500).json({message: "Database error: " + err});
-    if(!result || result.length === 0) return res.status(404).json({message:"User not found"});
+    if(!result || result.length === 0) return res.status(404).json({message:"Your Email is Not Exist!"});
 
     const user = result[0];
     try {
@@ -65,5 +55,6 @@ exports.login = (req,res)=>{
     } catch(err) {
       return res.status(500).json({message: "Authentication error: " + err});
     }
+    console.log(user);  
   });
 };

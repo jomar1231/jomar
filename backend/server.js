@@ -2,21 +2,23 @@
 // server.js - FIXED VERSION
 // ============================================
 require('dotenv').config();
+const PORT = process.env.PORT || 3006;
 const express = require('express');
 const app = express();
 const cors = require("cors");
 const path = require('path');
-const PORT = process.env.PORT || 3006;
+const register = require("./routes/registerRoutes");
+const login = require("./routes/loginRoutes");
+const user = require("./routes/userRoutes");
 app.use(cors());
 app.use(express.json());
 
 // ============================================
 // API ROUTES (MUST come before static files)
 // ============================================
-app.use("/api", require("./routes/registerRoutes"));
-app.use("/api", require("./routes/loginRoutes"));
-app.use("/api", require("./routes/userRoutes"));
-app.use("/auth", require("./routes/registerRoutes"));
+app.use("/api", register);
+app.use("/api", login);
+app.use("/api", user);
 // ============================================
 // HTML PAGE ROUTES
 // ============================================

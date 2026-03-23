@@ -1,11 +1,7 @@
 async function login() {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
     
-    if(!email || !password) {
-        alert("Please enter email and password");
-        return;
-    }
     
     const loginBtn = document.querySelector('.login-btn');
     loginBtn.disabled = true;
@@ -39,10 +35,14 @@ async function login() {
         loginBtn.disabled = false;
         loginBtn.innerHTML = 'Sign In';
     }
+
+
+   
 }
 
 
-const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
+
+const inputs = document.querySelectorAll('.email,.password');
 inputs.forEach(input => {
     input.addEventListener('focus', function() {
         this.parentElement.style.transform = 'translateY(-2px)';
@@ -55,9 +55,7 @@ inputs.forEach(input => {
 
 // Button click handler - calls login function
 const loginBtn = document.querySelector('.login-btn');
-if(loginBtn) {
-    loginBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        login();
-    });
-}
+loginBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    login();
+});
