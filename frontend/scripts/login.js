@@ -1,7 +1,7 @@
 async function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    
+    const errorText = document.getElementById('error');
     
     const loginBtn = document.querySelector('.login-btn');
     loginBtn.disabled = true;
@@ -22,7 +22,7 @@ async function login() {
 
         if(response.ok){
             localStorage.setItem('token', data.token);
-            alert("LOGIN SUCCESSFULLY");
+            alert("login successfully");
             window.location.href = "/shopMarket.html";
         }else{
             alert(data.message || "ACCESS DENIED");
@@ -35,9 +35,14 @@ async function login() {
         loginBtn.disabled = false;
         loginBtn.innerHTML = 'Sign In';
     }
+    if(!password){
+        password.classList.add("error");
+        errorText.style.display = "block";
+    }else{
+        password.classList.remove("error");
+        errorText.style.display = "none";
+    }
 
-
-   
 }
 
 

@@ -37,11 +37,9 @@ exports.register = async (req,res)=>{
 // Login
 exports.login = (req,res)=>{
   const { email, password } = req.body;
-  
   if(!email || !password) {
     return res.status(400).json({message:"Email and password are required"});
   }
-
   User.findUserByEmail(email, async (err,result)=>{
     if(err) return res.status(500).json({message: "Database error: " + err});
     if(!result || result.length === 0) return res.status(404).json({message:"Your Email is Not Exist!"});
@@ -55,6 +53,15 @@ exports.login = (req,res)=>{
     } catch(err) {
       return res.status(500).json({message: "Authentication error: " + err});
     }
-    console.log(user);  
   });
 };
+
+
+exports.products = (req,res) =>{
+  User.products((err, result) =>{
+    if(err){
+      return res.status(404).json({message : " NO PRODUCTS"});
+    }
+    res.json( { product: result});
+  });
+}

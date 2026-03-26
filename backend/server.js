@@ -7,12 +7,13 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 const path = require('path');
+const helmet = require("helmet");
 const register = require("./routes/registerRoutes");
 const login = require("./routes/loginRoutes");
 const user = require("./routes/userRoutes");
 app.use(cors());
-app.use(express.json());
-
+app.use(express.json());  
+app.use(helmet());
 // ============================================
 // API ROUTES (MUST come before static files)
 // ============================================

@@ -20,5 +20,12 @@ exports.getAllUsers = (callback)=>{
     );
 };
 
+exports.products = (callback) =>{
+    db.query("SELECT * FROM products", callback);
+}
+
+
+
+
 
 
