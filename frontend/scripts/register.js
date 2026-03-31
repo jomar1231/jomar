@@ -54,9 +54,24 @@ passwordInput.addEventListener('input', function() {
 
 // Enable/disable register button based on terms checkbox
 const termsCheckbox = document.getElementById('terms');
+const registerBtn = document.getElementById('registerBtn');
 
 termsCheckbox.addEventListener('change', function() {
     registerBtn.disabled = !this.checked;
+});
+
+// Run register() when button clicked
+registerBtn.addEventListener('click', async function(e) {
+    e.preventDefault();
+    if (registerBtn.disabled) return;
+
+    this.innerHTML = 'Brewing your account...';
+
+    await register();
+
+    setTimeout(() => {
+        this.innerHTML = 'Create Account';
+    }, 2000);
 });
 
 // Add smooth hover effect on input focus

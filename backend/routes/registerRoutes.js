@@ -1,17 +1,15 @@
-const express = require("express");
+import express from "express";
 const register = express.Router();
-const authController = require("../controller/authController");
-const verifyToken = require("../middleware/authMiddle");
+import { register as registerController } from "../controller/authController.js";
+import verifyToken from "../middleware/authMiddle.js";
 
 // Public route
-
-register.post("/register", authController.register,verifyToken);
-// Protected route - requires valid token
+register.post("/register", registerController);
 register.get("/user", verifyToken, (req,res)=>{
   res.json({message: "welcome to api", user: req.user});
 });
 
-module.exports = register;
+export default register;
 
 
 

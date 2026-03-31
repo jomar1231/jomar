@@ -1,13 +1,12 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../models/userModels");
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { getAllUsers as getAllUsersModel } from "../models/userModels.js";
 
-exports.getAllUsers = async (req,res) =>{
-  User.getAllUsers((err,result)=>{
+export const getAllUsers = async (req,res) =>{
+  getAllUsersModel((err,result)=>{
     if(err){
       return res.status(500).json({message: "Database error: " + err});
     }
     res.json({database : "Users retrieved", user : result});
   });
 };
-

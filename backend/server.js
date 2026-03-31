@@ -1,18 +1,22 @@
-// ============================================
-// server.js - FIXED VERSION
-// ============================================
-require('dotenv').config();
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 3006;
-const express = require('express');
+import express from 'express';
+import cookieParser from 'cookie-parser';
 const app = express();
-const cors = require("cors");
-const path = require('path');
-const helmet = require("helmet");
-const register = require("./routes/registerRoutes");
-const login = require("./routes/loginRoutes");
-const user = require("./routes/userRoutes");
-app.use(cors());
+import cors from "cors";
+import path from 'path';
+import helmet from "helmet";
+import register from "./routes/registerRoutes.js";
+import login from "./routes/loginRoutes.js";
+import user from "./routes/userRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());  
+app.use(cookieParser());
 app.use(helmet());
 // ============================================
 // API ROUTES (MUST come before static files)
@@ -20,6 +24,7 @@ app.use(helmet());
 app.use("/api", register);
 app.use("/api", login);
 app.use("/api", user);
+app.use("/api", productRoutes);
 // ============================================
 // HTML PAGE ROUTES
 // ============================================

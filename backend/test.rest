@@ -8,3 +8,6 @@ http://localhost:3006/api/users
 
 http://localhost:3006/api/profile
 
+#########
+
+http://localhost:3006/api/products

@@ -1,14 +1,16 @@
-const express = require("express");
+import express from "express";
 const login = express.Router();
-const authController = require("../controller/authController");
-const verifyToken = require("../middleware/authMiddle");
+import { login as loginController, logout } from "../controller/authController.js";
+import verifyToken from "../middleware/authMiddle.js";
 
 // Public route
-login.post("/login", authController.login, verifyToken);
+login.post("/login", loginController);
 
-// Protected route - requires valid token
+// Protected routes
 login.get("/profile", verifyToken, (req,res)=>{
   res.json({message: "Profile accessed", user: req.user});
 });
 
-module.exports = login;
+login.post("/logout", verifyToken, logout);
+
+export default login;
